@@ -1,0 +1,63 @@
+{
+    "manifest_version": 3,
+    "name": "Codeforces → LeetCode Workflow",
+    "description": "Embed a persistent, LeetCode-like code editor into Codeforces problem pages (in-page, non-floating).",
+    "version": "0.1.0",
+    "permissions": [
+        "storage",
+        "scripting",
+        "activeTab",
+        "tabs"
+    ],
+    "host_permissions": [
+        "https://codeforces.com/*",
+        "https://*.codeforces.com/*",
+        "https://emkc.org/*"
+    ],
+    "background": {
+        "service_worker": "background/service_worker.js"
+    },
+    "options_ui": {
+        "page": "options/options.html",
+        "open_in_tab": true
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://codeforces.com/problemset/problem/*",
+                "https://codeforces.com/contest/*/problem/*",
+                "https://*.codeforces.com/problemset/problem/*",
+                "https://*.codeforces.com/contest/*/problem/*"
+            ],
+            "js": [
+                "content/domHooks.js",
+                "content/testCaseExtractor.js",
+                "content/persistence.js",
+                "content/templates.js",
+                "content/injectEditor.js"
+            ],
+            "css": [
+                "styles/editor.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "editor/monaco-loader.js",
+                "content/injected_editor.js",
+                "content/persistence.js",
+                "content/templates.js",
+                "content/testCaseExtractor.js",
+                "styles/editor.css",
+                "vendor/**",
+                "assets/**"
+            ],
+            "matches": [
+                "https://codeforces.com/*",
+                "https://*.codeforces.com/*"
+            ]
+        }
+    ]
+}
