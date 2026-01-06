@@ -95,43 +95,23 @@
 
     <h1>Codeforces → LeetCode Workflow</h1>
 
-    <!-- Default Language -->
-    <div class="section">
-        <h2>Default Language</h2>
-
-        <label for="defaultLanguage">
-            Language used when opening a new problem
-        </label>
-
-        <select id="defaultLanguage">
-            <option value="cpp">C++</option>
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="kotlin">Kotlin</option>
-            <option value="rust">Rust</option>
-            <option value="javascript">JavaScript</option>
-        </select>
-
-        <div class="hint">
-            This is used only if the problem has no saved code yet.
-        </div>
-    </div>
-
     <!-- Code Templates -->
     <div class="section">
         <h2>Code Templates</h2>
 
         <label for="templateLanguage">
-            Select Language
+            Select Language Family
         </label>
 
         <select id="templateLanguage">
-            <option value="cpp">C++</option>
-            <option value="python">Python</option>
-            <option value="java">Java</option>
+            <option value="cpp">C++ (GCC/G++/Clang)</option>
+            <option value="python">Python (3, PyPy)</option>
+            <option value="java">Java (8, 11, 17, 21...)</option>
             <option value="kotlin">Kotlin</option>
+            <option value="javascript">JavaScript / Node.js</option>
+            <option value="go">Go</option>
             <option value="rust">Rust</option>
-            <option value="javascript">JavaScript</option>
+            <option value="ruby">Ruby</option>
         </select>
 
         <label for="templateEditor" style="margin-top:12px">
@@ -142,11 +122,7 @@
 
         <div class="hint">
             Use <code>|</code> to indicate cursor position.<br />
-            Example:
-            <pre>int main() {
-    |
-    return 0;
-}</pre>
+            Configures template for ALL versions of the selected language.
         </div>
 
         <div class="row" style="margin-top:12px">
@@ -155,7 +131,7 @@
         </div>
     </div>
 
-    <!-- Runner (future-safe) -->
+   
     <div class="section">
         <h2>Execution Engine</h2>
 
@@ -174,13 +150,13 @@
         </div>
     </div>
 
-    <!-- Footer -->
+
     <div class="section">
         <strong>Notes</strong>
         <ul>
             <li>This extension does not change Codeforces UI.</li>
-            <li>Your code is stored locally in your browser.</li>
-            <li>No credentials are stored by the extension.</li>
+            <li>Templates are applied when you open a problem with no saved code.</li>
+            <li>Language selection is persisted globally.</li>
         </ul>
     </div>
 
