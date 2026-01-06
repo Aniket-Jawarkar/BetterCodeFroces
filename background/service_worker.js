@@ -1,6 +1,4 @@
-
 'use strict';
-
 
 importScripts(
     './runWorker.js',
@@ -16,7 +14,7 @@ function asyncResponse(handler) {
                 console.error('[CF-LL][BG] Error:', err);
                 sendResponse({ error: err?.message || String(err) });
             });
-        return true; //  keep message channel open
+        return true; 
     };
 }
 
@@ -54,6 +52,7 @@ chrome.runtime.onMessage.addListener(
                 return await self.__cfll_runWorker(message.payload);
             }
 
+           
             case 'submit': {
                 if (!self.__cfll_submitWorker) {
                     throw new Error('Submit worker not initialized');
@@ -61,6 +60,7 @@ chrome.runtime.onMessage.addListener(
                 return await self.__cfll_submitWorker(message.payload, sender);
             }
 
+          
             case 'getLangMap': {
                 if (!sender?.tab?.id) {
                     return { error: 'No tab context' };
@@ -69,9 +69,17 @@ chrome.runtime.onMessage.addListener(
                 return { langMap };
             }
 
-           
+            
+            case 'getTemplate': {
+                const langKey = message.payload.lang; 
+                const storageKey = `cf-ll-template-${langKey}`;
+                const res = await chrome.storage.local.get(storageKey);
+                return { template: res[storageKey] };
+            }
+
+         
             case 'editorReady': {
-             
+         
                 console.debug('[CF-LL][BG] Editor ready for', message.payload);
                 return { ok: true };
             }
